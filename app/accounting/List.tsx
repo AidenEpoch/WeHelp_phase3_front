@@ -37,7 +37,7 @@ export default function List({ records, onDeleteRecord }: ListProps) {
             </span>
             <button
               onClick={() => onDeleteRecord(item.id)}
-              style={{ padding: '2px 8px', cursor: 'pointer' }}
+              style={{ padding: '2px 8px', cursor: 'pointer', border: '1px solid #ccc', backgroundColor: '#eee'  }}
             >
               刪除
             </button>

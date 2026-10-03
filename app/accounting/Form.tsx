@@ -15,7 +15,7 @@ export default function Form({ onAddRecord }: FormProps) {
     e.preventDefault();
     const numAmount = parseFloat(amount);
     if (isNaN(numAmount) || numAmount <= 0 || !name.trim()) {
-      alert('請輸入有效的金額與名稱！');
+      alert('請輸入有效的金額與名稱');
       return;
     }
     onAddRecord(type, numAmount, name.trim());
@@ -34,7 +34,7 @@ export default function Form({ onAddRecord }: FormProps) {
       <select 
         value={type} 
         onChange={(e) => setType(e.target.value as 'income' | 'expense')}
-        style={{ padding: '4px 8px' }}
+        style={{ padding: '4px 8px', border: '1px solid #aaa' }}
       >
         <option value="expense">支出</option>
         <option value="income">收入</option>
@@ -45,18 +45,18 @@ export default function Form({ onAddRecord }: FormProps) {
         placeholder="金額"
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
-        style={{ width: '80px', padding: '4px 8px' }}
+        style={{ width: '100px', padding: '4px 8px', border: '1px solid #aaa'}}
       />
 
       <input
         type="text"
-        placeholder="品項/名稱"
+        placeholder="請填入支出或收入之活動"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        style={{ width: '150px', padding: '4px 8px' }}
+        style={{ width: '300px', padding: '4px 8px', border: '1px solid #aaa', height: '40px'}}
       />
 
-      <button type="submit" style={{ padding: '4px 12px', cursor: 'pointer' }}>
+      <button type="submit" style={{ fontSize:'14px', padding: '4px 8px', cursor: 'pointer', border: '1px solid #ccc',whiteSpace: 'nowrap', backgroundColor: '#eee', height: '40px'}}>
         新增紀錄
       </button>
     </form>

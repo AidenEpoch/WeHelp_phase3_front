@@ -3,12 +3,12 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <div style={{
-      maxWidth: '600px',
-      margin: '40px auto',
-      border: '1px solid #ccc',
-      fontFamily: 'sans-serif'
+      width: '100%',
+      minHeight: '350px',
+      fontFamily: 'sans-serif',
+      boxSizing: 'border-box'
     }}>
-      {/* Header */}
+      
       <div style={{
         backgroundColor: '#2b3e50',
         color: '#fff',
@@ -20,7 +20,7 @@ export default function Home() {
         React 練習專案
       </div>
 
-      {/* Main Content */}
+      
       <div style={{
         backgroundColor: '#d0e1f9',
         padding: '60px 20px',
@@ -31,7 +31,7 @@ export default function Home() {
         歡迎光臨我的頁面
       </div>
 
-      {/* Footer / Action */}
+      
       <div style={{
         padding: '40px 20px',
         textAlign: 'center',
