@@ -14,36 +14,38 @@ interface ListProps {
 
 export default function List({ records, onDeleteRecord }: ListProps) {
   return (
-    <div style={{ marginTop: '20px' }}>
-      {records.map((item) => {
-        const isExpense = item.type === 'expense';
-        const displayAmount = isExpense ? -item.amount : item.amount;
-        const color = isExpense ? '#d9534f' : '#5cb85c';
-
-        return (
+    <div style={{ width: '100%', maxWidth: '550px', margin: '0 auto' }}>
+      {records.length === 0 ? (
+        <div style={{ textAlign: 'center', color: '#888', padding: '20px' }}>目前沒有紀錄</div>
+      ) : (
+        records.map((item) => (
           <div key={item.id} style={{
-            display: 'flex',
-            justifyContent: 'space-between',
+            display: 'grid',
+            gridTemplateColumns: '180px 1fr 100px',
             alignItems: 'center',
-            padding: '8px 0',
-            maxWidth: '350px',
-            margin: '0 auto'
+            marginBottom: '12px',
+            borderBottom: '1px solid #eee',
+            paddingBottom: '12px'
           }}>
-            <span style={{ color, fontWeight: 'bold', width: '80px', textAlign: 'right' }}>
-              {displayAmount}
-            </span>
-            <span style={{ flex: 1, marginLeft: '20px', textAlign: 'left' }}>
+            <div style={{ color: item.type === 'expense' ? '#b71c1c' : '#2e7d32', fontWeight: 'bold', fontSize: '16px', paddingLeft: '5px' }}>
+              {item.type === 'expense' ? `-${item.amount}` : `${item.amount}`}
+            </div>
+
+            <div style={{ textAlign: 'center', color: '#333', fontSize: '16px' }}>
               {item.name}
-            </span>
-            <button
-              onClick={() => onDeleteRecord(item.id)}
-              style={{ padding: '2px 8px', cursor: 'pointer', border: '1px solid #ccc', backgroundColor: '#eee'  }}
-            >
-              刪除
-            </button>
+            </div>
+
+            <div style={{ textAlign: 'right' }}>
+              <button 
+                onClick={() => onDeleteRecord(item.id)}
+                style={{ padding: '4px 12px', cursor: 'pointer', fontSize: '13px', backgroundColor: '#eee', border: '1px solid #ccc', borderRadius: '2px' }}
+              >
+                刪除
+              </button>
+            </div>
           </div>
-        );
-      })}
+        ))
+      )}
     </div>
   );
 }

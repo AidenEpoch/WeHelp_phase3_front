@@ -7,7 +7,7 @@ interface FormProps {
 }
 
 export default function Form({ onAddRecord }: FormProps) {
-  const [type, setType] = useState<'income' | 'expense'>('expense');
+  const [type, setType] = useState<'income' | 'expense'>('income');
   const [amount, setAmount] = useState<string>('');
   const [name, setName] = useState<string>('');
 
@@ -15,7 +15,7 @@ export default function Form({ onAddRecord }: FormProps) {
     e.preventDefault();
     const numAmount = parseFloat(amount);
     if (isNaN(numAmount) || numAmount <= 0 || !name.trim()) {
-      alert('請輸入有效的金額與名稱');
+      alert('請輸入有效的金額與說明');
       return;
     }
     onAddRecord(type, numAmount, name.trim());
@@ -25,38 +25,41 @@ export default function Form({ onAddRecord }: FormProps) {
 
   return (
     <form onSubmit={handleSubmit} style={{
-      display: 'flex',
+      display: 'grid',
+      gridTemplateColumns: '100px 80px 1fr 100px',
       gap: '8px',
-      justifyContent: 'center',
-      paddingBottom: '20px',
-      borderBottom: '1px solid #eee'
+      alignItems: 'center',
+      marginBottom: '30px',
+      width: '100%',
+      maxWidth: '550px',
+      margin: '0 auto 30px auto'
     }}>
       <select 
         value={type} 
         onChange={(e) => setType(e.target.value as 'income' | 'expense')}
-        style={{ padding: '4px 8px', border: '1px solid #aaa' }}
+        style={{ padding: '6px', border: '1px solid #ccc', backgroundColor: '#fff', width: '100%' }}
       >
-        <option value="expense">支出</option>
         <option value="income">收入</option>
+        <option value="expense">支出</option>
       </select>
 
       <input
         type="number"
-        placeholder="金額"
+        placeholder="0"
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
-        style={{ width: '100px', padding: '4px 8px', border: '1px solid #aaa'}}
+        style={{ padding: '6px', border: '1px solid #ccc', width: '100%' }}
       />
 
       <input
         type="text"
-        placeholder="請填入支出或收入之活動"
+        placeholder="說明"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        style={{ width: '300px', padding: '4px 8px', border: '1px solid #aaa', height: '40px'}}
+        style={{ padding: '6px', border: '1px solid #ccc', width: '100%' }}
       />
 
-      <button type="submit" style={{ fontSize:'14px', padding: '4px 8px', cursor: 'pointer', border: '1px solid #ccc',whiteSpace: 'nowrap', backgroundColor: '#eee', height: '40px'}}>
+      <button type="submit" style={{ padding: '6px', cursor: 'pointer', backgroundColor: '#eee', border: '1px solid #ccc', width: '100%' }}>
         新增紀錄
       </button>
     </form>
